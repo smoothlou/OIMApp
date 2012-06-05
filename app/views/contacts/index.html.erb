@@ -4,7 +4,7 @@
 		<title>Once I Met</title>
 	</head>
 	<body>
-		<% if session[:uid].blank? %><%= link_to "PLEASE SIGN IN", users_new_url %><% else %>
+		<% if session[:uid].blank? %><%= link_to "PLEASE SIGN IN", new_user_url %><% else %>
 		<h1>Here are your people</h1>
 			<h2><% @contacts.each do |contact| %></h2>
 		<div id="pants">
