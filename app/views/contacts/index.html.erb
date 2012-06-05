@@ -5,6 +5,9 @@
 	</head>
 	<body>
 		<% if session[:uid].blank? %><%= link_to "PLEASE SIGN IN", new_user_url %><% else %>
+		<div class="sidebar">
+			<h2>YOUR PEOPLE</h2>
+		</div>
 		<h1>Here are your people</h1>
 			<h2><% @contacts.each do |contact| %></h2>
 		<div id="pants">
