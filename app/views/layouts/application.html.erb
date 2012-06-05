@@ -10,9 +10,9 @@
 	<ul>
 		<%#=render "contacts/form", @contact => Contact.find(4) %>
 		
-		<form action = "<%contacts_url%>" method = "post">
-				<input type = "text" name = "keyword" placeholder = "Who'd you meet?">
-			    </form>
+		<!-- <form action = "<%contacts_url%>" method = "post">
+						<input type = "text" name = "keyword" placeholder = "Who'd you meet?">
+					    </form> -->
 			
 		<% if session[:userid].present?%>
 		<li><%= link_to "View My Profile", user_url(current_user)%></li>
@@ -31,7 +31,7 @@
 			<p id="notice"><%= flash[:notice]%></p>
 			<%end%>
 	<div class="sidebar">
-		<h2>YOUR PEOPLE</h2>
+
 	</div>
 <body>
 	<%= yield %>

@@ -4,32 +4,29 @@
 		<title>Once I Met</title>
 	</head>
 	<body>
-		<% if session[:uid].blank? %><%= link_to "PLEASE SIGN IN", new_user_url %><% else %>
-		<div class="sidebar">
-			<h2>YOUR PEOPLE</h2>
-		</div>
+		<% if session[:userid].blank? %>
+		  <%= link_to "PLEASE SIGN IN", new_user_url %>
+		<% else %>
+		  <div class="sidebar">
+		  	<h2>Your Group</h2>
+		  </div>
+		
 		<h1>Here are your people</h1>
-			<h2><% @contacts.each do |contact| %></h2>
+		
+		<form action="<%contacts_url%>" method = "get">
+		<input type="text" name="keyword" placeholder = "Keywords" >
+		<input type="submit" name="keyword" value = "Search for Friend!!">
+		</form>
+		<%= paginate @contacts%>
+		
+		<h2><% @contacts.each do |contact| %></h2>
 		<div id="pants">
-			<table>
-				<tr>
-					<th>
-						<%= link_to contact.name(contact.first_name, contact.last_name), contact_url(contact.id) %>
-					</th>
-				</tr>
-				<tr>
-					<td>
-						<%= link_to 'More Info', contact %>
-					</td>
-					<td>
-						<%= link_to 'Edit', edit_contact_path(contact) %>
-					</td>
-					<td>
-						<%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %>
-					</td>
-				</tr>
-			</table><br>
+		  <%= link_to "#{contact.first_name} #{contact.last_name}", contact_url(contact.id) %>
+		  <%= link_to 'More Info', contact %>
+		  <%= link_to 'Edit', edit_contact_path(contact) %>
+		  <%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %>
+	    <%end%></br></br>
 			<%= link_to 'Create a new contact!', new_contact_path %>
-		</div><% end %><% end %>
+		</div><% end %>
 	</body>
 </html>
