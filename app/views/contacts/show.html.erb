@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+
+
+<h1><%= @contact.first_name %> <%= @contact.last_name %> </h1>
+<h3>nickname: <%= @contact.nickname %></h3>
+<br>
+<br>
+<%= @contact.job_title %><br>
+email: <%= @contact.email %><br>
+phone: <%= @contact.phone %><br>
+<% if @contact.twitter.present?%>
+twitter: <%= @contact.twitter %><br>
+<%end%>
+<% if @contact.address.present?%>
+Address: <%= @contact.address %><br>
+<%= @contact.city %>, <%= @contact.state %> <%= @contact.zip %><br>
+<%end%>
+We met at <%= @contact.we_met_at %><br>
+We met on <%= @contact.we_met_on %><br>
+We chatted about <%= @contact.we_chatted_about %><br>
+I'd say <%=@contact.first_name%> is <%=@contact.adjective%>
+<br>
+
+<%= link_to 'Edit', edit_contact_path(@contact) %> |
+<%= link_to 'Delete this contact', contacts_url(@contact.id),
+ 			:method => :delete, :confirm => "Are you sure you want to delete this?"%>
+
+
+<%= link_to 'Did You Meet Again? Add a New Story!', new_story_url(contact_id: @contact.id) %>
+</br>
+
+<% @contact.stories.each do |s|%>
+<ul><%if s.date.present?%>
+<%= s.date.strftime("%b%e") %>
+<%else%>
+<%=s.created_at.strftime("%b%e") %>
+<%end%>
+<%=s.convo%>
+</ul>
+<%end%>

@@ -1,0 +1,26 @@
+header {
+	background: -webkit-radial-gradient(center, ellipse cover, #7cb196 0%,#28841e 100%); /* Chrome10+,Safari5.1+ */		
+	-webkit-border-radius: 12px;
+	text-decoration: none;
+	color: #FFFB22;
+	}
+
+#sidebar {
+	float: right;
+	}
+body {
+	font-family: helvetica, sans-serif; 
+	color: black;
+	text-decoration: none;
+	border: none;
+	}
+	
+#pants {
+	text-decoration: none;
+	color: black;
+	border: none;
+	}
+	
+h3 {
+	border-top: -10px;
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+  		<title>OnceIMetApp</title>
+  			<%= stylesheet_link_tag    "application", :media => "all" %>
+  			<%= javascript_include_tag "application" %>
+  			<%= csrf_meta_tags %>
+</head>
+	<header><%= link_to image_tag("Once-I-met-Home-Page-May.png"), root_url  %>
+	<ul>
+		<%#=render "contacts/form", @contact => Contact.find(4) %>
+		
+		<form action = "<%contacts_url%>" method = "post">
+				<input type = "text" name = "keyword" placeholder = "Who'd you meet?">
+			    </form>
+			
+		<% if session[:userid].present?%>
+		<li><%= link_to "View My Profile", user_url(current_user)%></li>
+		<li><%= link_to "Sign Out", sign_out_url %></li>
+		<% else %>
+		<li><%= link_to "Sign In!", sign_in_url %></li>
+		<li><%= link_to "Sign Up!", new_user_url %></li>
+		<%end%>
+		<% if session[:userid].present? %>
+		<p>Hi, <%= current_user.first %></p>
+		<% end %>
+		</header>
+		
+		<div id="content">
+			<% if flash[:notice].present? %>
+			<p id="notice"><%= flash[:notice]%></p>
+			<%end%>
+	<div class="sidebar">
+		<h2>YOUR PEOPLE</h2>
+	</div>
+<body>
+	<%= yield %>
+</body>
+</html>

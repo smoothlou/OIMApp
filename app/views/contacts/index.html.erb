@@ -1,0 +1,32 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+	<head>
+		<title>Once I Met</title>
+	</head>
+	<body>
+		<% if session[:uid].blank? %><%= link_to "PLEASE SIGN IN", users_new_url %><% else %>
+		<h1>Here are your people</h1>
+			<h2><% @contacts.each do |contact| %></h2>
+		<div id="pants">
+			<table>
+				<tr>
+					<th>
+						<%= link_to contact.name(contact.first_name, contact.last_name), contact_url(contact.id) %>
+					</th>
+				</tr>
+				<tr>
+					<td>
+						<%= link_to 'More Info', contact %>
+					</td>
+					<td>
+						<%= link_to 'Edit', edit_contact_path(contact) %>
+					</td>
+					<td>
+						<%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %>
+					</td>
+				</tr>
+			</table><br>
+			<%= link_to 'Create a new contact!', new_contact_path %>
+		</div><% end %><% end %>
+	</body>
+</html>
