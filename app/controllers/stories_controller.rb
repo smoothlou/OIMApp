@@ -25,7 +25,7 @@ class StoriesController < ApplicationController
   # GET /stories/new.json
   def new
     @story = Story.new
-    @story.contact = Contact.find(4)
+    @story.contact = Contact.find(params[:contact_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -42,8 +42,8 @@ class StoriesController < ApplicationController
   # POST /stories.json
   def create
     @story = Story.new(params[:story])
-    @story.contact = Contact.find(4)
-
+    # @story.contact = Contact.find(params[:contact_id])
+   
     respond_to do |format|
       if @story.save
         format.html { redirect_to contact_url(@story.contact_id), notice: 'Story was successfully created.' }

@@ -47,8 +47,12 @@
 				
 				<div id="sidebar">
 				  	<h2>Your Groups</h2>
-				<% @contacts.group do |contact| %>
-				<%end%>
+			    <% Contact.all.collect{|g| g.group}.uniq.each do |group|%>
+			    <ul>
+			    <li><%= group%></li></ul>
+			    <%end%>
+			    
+			  
 				  </div>
 
 <h1>Here are your people</h1>

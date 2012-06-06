@@ -8,6 +8,8 @@ OnceIMetApp::Application.routes.draw do
   
   resources :users
   
+  get "groups/"
+  
   root to: "contacts#index"
   
   resources :contacts
