@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120605163301) do
+ActiveRecord::Schema.define(:version => 20120606034251) do
 
   create_table "contacts", :force => true do |t|
     t.datetime "created_at",       :null => false
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20120605163301) do
     t.string   "we_met_on"
     t.string   "we_chatted_about"
     t.string   "adjective"
+    t.string   "group"
   end
 
   create_table "stories", :force => true do |t|

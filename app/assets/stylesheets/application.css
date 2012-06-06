@@ -1,8 +1,8 @@
 header {
-	background: -webkit-radial-gradient(center, ellipse cover, #7cb196 0%,#28841e 100%); /* Chrome10+,Safari5.1+ */		
-	-webkit-border-radius: 12px;
+	background: -webkit-radial-gradient(center, ellipse cover, #7cb196 0%, #63AB4C 100%); /* Chrome10+,Safari5.1+ */		
+	-webkit-border-radius: 6px;
 	text-decoration: none;
-	color: #FFFB22;
+	color: #502A17;
 	}
 
 #sidebar {
@@ -11,7 +11,6 @@ header {
 body {
 	font-family: helvetica, sans-serif; 
 	color: black;
-	text-decoration: none;
 	border: none;
 	}
 	
@@ -21,7 +20,24 @@ body {
 	border: none;
 	}
 	
+#contact li {
+	list-style: none;
+}
+	
 h3 {
 	border-top: -10px;
+}
+
+nav {
+	height: 40px;
+	line-height: 40px;
+	font-size: 20px;
+}
+
+nav li {
+	float: left;
+	margin: 0 25px;
+	list-style: none;
+	text-decoration: none;
 }
 

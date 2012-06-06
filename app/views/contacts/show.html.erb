@@ -1,41 +1,71 @@
+</header>
 <p id="notice"><%= notice %></p>
 
+<ul>
 
+<div id="contact">	
+<li><h1><%= @contact.first_name %> <% if @contact.last_name.present?%><%= @contact.last_name %><%end%> </h1></li>
+<% if @contact.nickname.present?%>
+<li><h3>nickname: <%= @contact.nickname %>
+<%end%></h3></li>
 
-<h1><%= @contact.first_name %> <%= @contact.last_name %> </h1>
-<h3>nickname: <%= @contact.nickname %></h3>
-<br>
-<br>
-<%= @contact.job_title %><br>
-email: <%= @contact.email %><br>
-phone: <%= @contact.phone %><br>
-<% if @contact.twitter.present?%>
-twitter: <%= @contact.twitter %><br>
-<%end%>
-<% if @contact.address.present?%>
-Address: <%= @contact.address %><br>
-<%= @contact.city %>, <%= @contact.state %> <%= @contact.zip %><br>
-<%end%>
-We met at <%= @contact.we_met_at %><br>
-We met on <%= @contact.we_met_on %><br>
-We chatted about <%= @contact.we_chatted_about %><br>
+<li><% if @contact.job_title.present?%>
+<%= @contact.job_title %>
+<%end%></li>
+
+<li><% if @contact.email.present?%>
+email: <%= @contact.email %>
+<%end%></li>
+
+<li><% if @contact.phone.present?%>
+Phone: <%= @contact.phone %>
+<%end%></li>
+
+<li><% if @contact.twitter.present?%>
+twitter: <%= @contact.twitter %>
+<%end%></li>
+
+<li><% if @contact.address.present?%>
+Address: <%= @contact.address %></li>
+
+<li><%= @contact.city %>, <%= @contact.state %></li> 
+<li><%= @contact.zip %>
+<%end%></li>
+
+<li><% if @contact.we_met_at.present?%>
+We met at <%= @contact.we_met_at %>
+<%end%></li>
+
+<li><% if @contact.we_met_on.present?%>
+We met on <%= @contact.we_met_on %>
+<%end%></li>
+
+<li><% if @contact.we_chatted_about.present?%>
+We chatted about <%= @contact.we_chatted_about %>
+<%end%></li>
+
+<li><% if @contact.adjective.present?%>
 I'd say <%=@contact.first_name%> is <%=@contact.adjective%>
-<br>
+<%end%></li>
+</div>
+
 
 <%= link_to 'Edit', edit_contact_path(@contact) %> |
 <%= link_to 'Delete this contact', contacts_url(@contact.id),
  			:method => :delete, :confirm => "Are you sure you want to delete this?"%>
 
-
 <%= link_to 'Did You Meet Again? Add a New Story!', new_story_url(contact_id: @contact.id) %>
 </br>
+<% if @contact.stories.present?%>
+<h2>We Met Again On</h2> 
 
 <% @contact.stories.each do |s|%>
-<ul><%if s.date.present?%>
+<h2><ul><%if s.date.present?%>
 <%= s.date.strftime("%b%e") %>
 <%else%>
 <%=s.created_at.strftime("%b%e") %>
-<%end%>
+<%end%></h2>
 <%=s.convo%>
 </ul>
+<%end%>
 <%end%>

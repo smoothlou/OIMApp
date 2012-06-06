@@ -41,6 +41,12 @@
 <%=f.text_field :we_chatted_about %></br>
 <%=f.label "How would you describe them, in a word or two (or twelve)?"%>
 <%=f.text_field :adjective %></br>
+
+<%=f.label "Group your people however you'd like!"%>
+<%=f.text_field :group%>
+
+<%= link_to 'Back', contacts_path %>
+
 <%= f.submit %>
   </div>
 <% end %>

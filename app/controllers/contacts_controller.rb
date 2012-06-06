@@ -3,6 +3,8 @@ class ContactsController < ApplicationController
   # GET /contacts.json
   def index
     
+    @contact = Contact.new
+    
     if params[:keyword].present?
       @contacts = Contact.where("LOWER(last_name) LIKE ?", "%#{params[:keyword].downcase}%")
       @contacts = @contacts.page(params[:page]).per(5)

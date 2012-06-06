@@ -5,18 +5,54 @@
 	</head>
 	<body>
 		<% if session[:userid].blank? %>
-		  <%= link_to "PLEASE SIGN IN", new_user_url %>
+		  <%= link_to "PLEASE SIGN IN", sign_in_url %>
 		<% else %>
-		  <div class="sidebar">
-		  	<h2>Your Group</h2>
-		  </div>
+	<nav>
+		<ul>
+			<li><% if session[:userid].present? %>
+			Hello <%= current_user.first %>!</li>
+			<% end %>
+	<li><form action="<%contacts_url%>" method = "get">
+			<input type="text" name="keyword" placeholder = "Type a descriptor" >
+			<input type="submit" name="keyword" value = "Search !!">
+		</form></li>
 		
-		<h1>Here are your people</h1>
+		<%= form_for(@contact) do |f| %>
+		  <% if @contact.errors.any? %>
+		<%=f.text_field :first_name, "who'd you meet today?" %>
+		<%= f.submit %>
+		<%end%>
+		<%end%>
 		
-		<form action="<%contacts_url%>" method = "get">
-		<input type="text" name="keyword" placeholder = "Keywords" >
-		<input type="submit" name="keyword" value = "Search for Friend!!">
-		</form>
+		<li><!-- <form action = "<%contacts_url%>" method = "post">
+					<input type = "text" name = "keyword" placeholder = "Who'd you meet?">
+					<input type="submit" name="keyword">
+			    </form> --></li>
+			<% if session[:userid].present?%>
+			<li><%= link_to "My Account", user_url(current_user)%></li>
+			<li><%= link_to "Sign Out", sign_out_url %></li>
+			<% else %>
+			<li><%= link_to "Sign In!", sign_in_url %></li>
+			<li><%= link_to "Sign Up!", new_user_url %></li>
+			<%end%>
+			
+			</ul>
+			</nav></header>
+			
+
+			<div id="content">
+				<% if flash[:notice].present? %>
+				<p id="notice"><%= flash[:notice]%></p>
+				<%end%>
+				
+				<div id="sidebar">
+				  	<h2>Your Groups</h2>
+				<% @contacts.group do |contact| %>
+				<%end%>
+				  </div>
+
+<h1>Here are your people</h1>
+
 		<%= paginate @contacts%>
 		
 		<h2><% @contacts.each do |contact| %></h2>
