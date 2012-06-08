@@ -6,8 +6,8 @@ class ContactsController < ApplicationController
     @contact = Contact.new
     @user = User.new
     
-    if params[:keyword].present?
-      @contacts = Contact.where("LOWER(last_name) LIKE ?", "%#{params[:keyword].downcase}%")
+    if params[:keyword].present? & params[:search].present?
+      @contacts = Contact.where("LOWER(#{params[:search]}) LIKE ?", "%#{params[:keyword].downcase}%")
       @contacts = @contacts.page(params[:page]).per(5)
     else
       @contacts = Contact.page(params[:page]).per(5)
@@ -15,6 +15,7 @@ class ContactsController < ApplicationController
     
 
     respond_to do |format|
+      @contact.save
       format.html # index.html.erb
       format.json { render json: @contacts }
     end
