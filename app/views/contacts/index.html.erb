@@ -1,29 +1,55 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+
 <html>
 	<head>
 		<title>Once I Met</title>
 	</head>
+	</header>
 	<body>
 		<% if session[:userid].blank? %>
-		  PLEASE <%= link_to "SIGN IN", sign_in_url %>
-			OR <%= link_to "SIGN UP", new_user_url %>
-		<% else %>
+		<br>
+		<div id=splash><h3>Once I Met is a powerful new tool to manage your friends,<br>
+			acquaintances, colleagues and anyone else you may run into.</h3>
+		<img><%= image_tag "OIMHP1.jpg" %></img>
+		
+		<ul>
+		<li>PLEASE SIGN IN</li>
+		<%= form_tag sessions_create_url do %>
+
+		  <p>
+		    <%= label_tag :email %>
+		    <%= text_field_tag :email %>
+		  </p>
+		  <p>
+		    <%= label_tag :password %>
+		    <%= password_field_tag :password %>
+		  </p>
+
+		  <p><%= submit_tag 'Sign in'%></p>
+		<%end%>
+		<li>OR SIGN UP</li>
+		<li> <%= render :partial => '/users/form' %></li>
+		</ul>
+		<% else %></div>
 	<nav>
 		<ul>
-			<li><% if session[:userid].present? %>
-			Hello <%= current_user.first %>!</li>
+			<% if session[:userid].present? %>
+			<li>Hello <%= current_user.first %>!</li>
 			<% end %>
+			</br>
+		
+			<%= form_for(@contact) do |f| %>
+			<li><%=f.text_field :first_name, placeholder: "who'd you meet today?" %></li>
+			<li><%= f.submit %></li>
+			<%end%>
+		
+			
 	<li><form action="<%contacts_url%>" method = "get">
-			<input type="text" name="keyword" placeholder = "Type a descriptor" >
-			<input type="submit" name="keyword" value = "Search !!">
+			<input type="text" name="keyword" placeholder = "Type a descriptor" ></li>
+			<li><input type="submit" name="keyword" value = "Search !!">
 		</form></li>
 		
-		<%= form_for(@contact) do |f| %>
-		  <% if @contact.errors.any? %>
-		<%=f.text_field :first_name, "who'd you meet today?" %>
-		<%= f.submit %>
-		<%end%>
-		<%end%>
+		
 		
 		<li><!-- <form action = "<%contacts_url%>" method = "post">
 					<input type = "text" name = "keyword" placeholder = "Who'd you meet?">
@@ -52,19 +78,18 @@
 			    
 			  
 				  </div>
-
-<h1>Here are your people</h1>
-
-		<%= paginate @contacts%>
-		
-		<h2><% @contacts.each do |contact| %></h2>
-		<div id="pants">
-		  <%= link_to "#{contact.first_name} #{contact.last_name}", contact_url(contact.id) %>
+	
+	<div id="contacts">	
+		<ul>
+		<li><h1>Your Contacts</h1></li>
+		<% @contacts.each do |contact| %>
+		  <li><h2><%= link_to "#{contact.first_name} #{contact.last_name}", contact_url(contact.id) %></h2></li>
 		  <%= link_to 'More Info', contact %>
 		  <%= link_to 'Edit', edit_contact_path(contact) %>
-		  <%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %>
+		  <%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %></li>
 	    <%end%></br></br>
-			<%= link_to 'Create a new contact!', new_contact_path %>
+		<li><%= paginate @contacts%></li>
+		<li><%= link_to 'Create a new contact!', new_contact_path %></li>
 		</div><% end %>
 	</body>
 </html>

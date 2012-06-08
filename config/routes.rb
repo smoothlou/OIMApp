@@ -1,5 +1,7 @@
 OnceIMetApp::Application.routes.draw do
   
+  resources :groups
+
   resources :stories
 
   get "sessions/new", :as  => :sign_in

@@ -4,6 +4,7 @@ class ContactsController < ApplicationController
   def index
     
     @contact = Contact.new
+    @user = User.new
     
     if params[:keyword].present?
       @contacts = Contact.where("LOWER(last_name) LIKE ?", "%#{params[:keyword].downcase}%")

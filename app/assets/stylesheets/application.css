@@ -8,13 +8,18 @@ header {
 #sidebar {
 	float: right;
 	}
+	
+#sidebar ul{
+	list-style: none;
+}
 body {
 	font-family: helvetica, sans-serif; 
 	color: black;
 	border: none;
+	text-decoration: none;
 	}
 	
-#pants {
+#contacts {
 	text-decoration: none;
 	color: black;
 	border: none;
@@ -34,10 +39,40 @@ nav {
 	font-size: 20px;
 }
 
+nav ul {
+	list-style: none;
+}
+
 nav li {
 	float: left;
 	margin: 0 25px;
 	list-style: none;
 	text-decoration: none;
 }
+
+#splash ul{
+	list-style: none;
+	text-decoration: none;
+	float: right;
+	margin-right: 20px;
+}
+
+#splash text{
+	margin: 50px auto;
+	text-size: 60px;
+}
+
+#splash img{
+	float: left;
+	margin: auto;
+}
+
+#contacts{
+	float: left;
+}
+
+#contacts ul{
+	list-style: none;
+}
+
 
