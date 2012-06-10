@@ -44,9 +44,19 @@
 			<%end%>
 		
 			
-	<li><form action="<%contacts_url%>" method = "get">
+	<li><form name= "contact" action="<%contacts_url%>" method = "get">
 			<input type="text" name="keyword" placeholder = "Type a descriptor" >
-			<input type="text" name="search" placeholder = "Search" ></li>
+			<select name="choose">
+			  <option selected>Choose One</option>
+			  <option name="search" value="first_name">First Name</option>
+			  <option name="search" value="last_name">Last Name</option>
+			  <option name="search" value="nickname">Nickname</option>
+			  <option name="search" value="email">Email</option>
+			  <option name="search" value="adjective">Adjective</option>
+			  <option name="search" value="group">Group</option>
+			</select>
+
+			
 			<li><input type="submit" value = "Search !!">
 		</form></li>
 		

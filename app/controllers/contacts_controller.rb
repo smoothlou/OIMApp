@@ -1,4 +1,7 @@
 class ContactsController < ApplicationController
+  
+  SEARCH_PEOPLE = ["First Name", "Last Name"]
+  
   # GET /contacts
   # GET /contacts.json
   def index
@@ -6,8 +9,8 @@ class ContactsController < ApplicationController
     @contact = Contact.new
     @user = User.new
     
-    if params[:keyword].present? & params[:search].present?
-      @contacts = Contact.where("LOWER(#{params[:search]}) LIKE ?", "%#{params[:keyword].downcase}%")
+    if params[:keyword].present? & params[:choose].present?
+      @contacts = Contact.where("LOWER(#{params[:choose]}) LIKE ?", "%#{params[:keyword].downcase}%")
       @contacts = @contacts.page(params[:page]).per(5)
     else
       @contacts = Contact.page(params[:page]).per(5)
