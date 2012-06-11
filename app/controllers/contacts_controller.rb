@@ -8,13 +8,22 @@ class ContactsController < ApplicationController
     
     @contact = Contact.new
     @user = User.new
+    @groups = Group.all
     
+<<<<<<< HEAD
     if params[:keyword].present? & params[:choose].present?
       @contacts = Contact.where("LOWER(#{params[:choose]}) LIKE ?", "%#{params[:keyword].downcase}%")
+=======
+    # if params[:keyword].present? & params[:search].present?
+    #       @contacts = Contact.where("LOWER(#{params[:search]}) LIKE ?", "%#{params[:keyword].downcase}%")
+    if params[:keyword].present?   
+      @contacts = Contact.where("LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ? OR LOWER(email) LIKE ? OR LOWER(adjective) LIKE ?","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%")
+>>>>>>> Added search functionality from Tatsu and applied user ids to contacts.
       @contacts = @contacts.page(params[:page]).per(5)
     else
       @contacts = Contact.page(params[:page]).per(5)
     end
+    
     
 
     respond_to do |format|
@@ -41,10 +50,14 @@ class ContactsController < ApplicationController
   
   def new
     @contact = Contact.new
+    @contact.user = current_user
+    
 
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @contact }
+      
+      
     end
   end
 
@@ -53,6 +66,7 @@ class ContactsController < ApplicationController
   # POST /contacts.json
   def create
     @contact = Contact.new(params[:contact])
+    # @contact.user_id =params[:user_id]
     if params[:keyword].present?
       @new = Contact.new(:first_name => params[:keyword])
       @new.save

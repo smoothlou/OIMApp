@@ -11,6 +11,9 @@
     </div>
   <% end %>
   <div class="actions">
+
+	<%= f.hidden_field :user_id%>
+
 	<%=f.label "First Name:"%>
 <%=f.text_field :first_name %></br>
 <%=f.label "Last Name:"%>
@@ -41,9 +44,6 @@
 <%=f.text_field :we_chatted_about %></br>
 <%=f.label "How would you describe them, in a word or two (or twelve)?"%>
 <%=f.text_field :adjective %></br>
-
-<%=f.label "Group your people however you'd like!"%>
-<%=f.text_field :group%>
 
 <%= link_to 'Back', contacts_path %>
 

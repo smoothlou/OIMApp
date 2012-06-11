@@ -41,9 +41,11 @@
 			<%= form_for(@contact) do |f| %>
 			<li><%=f.text_field :first_name, placeholder: "who'd you meet today?" %></li>
 			<li><%= f.submit %></li>
+			<%= f.hidden_field :user_id %>
 			<%end%>
 		
 			
+<<<<<<< HEAD
 	<li><form name= "contact" action="<%contacts_url%>" method = "get">
 			<input type="text" name="keyword" placeholder = "Type a descriptor" >
 			<select name="choose">
@@ -59,6 +61,19 @@
 			
 			<li><input type="submit" value = "Search !!">
 		</form></li>
+=======
+			<li><form name= "contact" action="<%contacts_url%>" method = "get">
+						<input type="text" name="keyword" placeholder = "Type a descriptor" >
+
+				<li><input type="submit" value = "Search">
+					</form></li>
+			
+	<!-- <li><form action="<%contacts_url%>" method = "get">
+				<input type="text" name="keyword" placeholder = "Type a descriptor" >
+				<input type="text" name="search" placeholder = "Search" ></li>
+				<li><input type="submit" value = "Search !!">
+			</form></li> -->
+>>>>>>> Added search functionality from Tatsu and applied user ids to contacts.
 		
 		
 		
@@ -80,15 +95,19 @@
 				<p id="notice"><%= flash[:notice]%></p>
 				<%end%>
 				
+
+				
 				<div id="sidebar">
 				  	<h2>Your Groups</h2>
-			    <% Contact.all.collect{|g| g.group}.uniq.each do |group|%>
+			    <% @groups.each do |g|%>
+				<%= link_to "g.name", group_url %>
 			    <ul>
 			    <li><%= group%></li></ul>
 			    <%end%>
 			    
 			  
 				  </div>
+	
 	
 	<div id="contacts">	
 		<ul>

@@ -3,7 +3,7 @@ class GroupsController < ApplicationController
   # GET /groups.json
   def index
     @groups = Group.all
-
+    @group = Group.new
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @groups }
