@@ -1,0 +1,5 @@
+require 'csv'    
+
+CSV.foreach(filename, :headers => true) do |row|
+	Contact.create!(row.to_hash)
+	end

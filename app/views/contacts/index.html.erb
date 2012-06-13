@@ -45,7 +45,6 @@
 			<%end%>
 		
 			
-<<<<<<< HEAD
 	<li><form name= "contact" action="<%contacts_url%>" method = "get">
 			<input type="text" name="keyword" placeholder = "Type a descriptor" >
 			<select name="choose">
@@ -61,7 +60,7 @@
 			
 			<li><input type="submit" value = "Search !!">
 		</form></li>
-=======
+		
 			<li><form name= "contact" action="<%contacts_url%>" method = "get">
 						<input type="text" name="keyword" placeholder = "Type a descriptor" >
 
@@ -73,8 +72,6 @@
 				<input type="text" name="search" placeholder = "Search" ></li>
 				<li><input type="submit" value = "Search !!">
 			</form></li> -->
->>>>>>> Added search functionality from Tatsu and applied user ids to contacts.
-		
 		
 		
 		<li><!-- <form action = "<%contacts_url%>" method = "post">
@@ -113,7 +110,7 @@
 		<ul>
 		<li><h1>Your Contacts</h1></li>
 		<% @contacts.each do |contact| %>
-		  <li><h2><%= link_to "#{contact.first_name} #{contact.last_name}", contact_url(contact.id) %></h2></li>
+		  <li><h2><%= link_to "#{contact.first_name} #{contact.last_name}", contact_url(contact.id) %></h2></li> <%#=@stories.last(params[:contact_id])%>
 		  <%= link_to 'More Info', contact %>
 		  <%= link_to 'Edit', edit_contact_path(contact) %>
 		  <%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %></li>

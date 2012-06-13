@@ -44,9 +44,10 @@
 <%=f.text_field :we_chatted_about %></br>
 <%=f.label "How would you describe them, in a word or two (or twelve)?"%>
 <%=f.text_field :adjective %></br>
-
-<%= link_to 'Back', contacts_path %>
+<%= f.label "Add a picture"%>
+<%= f.file_field :photo %></br>
 
 <%= f.submit %>
-  </div>
+  <%= link_to 'Back', contacts_path %>
+</div>
 <% end %>

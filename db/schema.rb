@@ -11,11 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120609011532) do
+ActiveRecord::Schema.define(:version => 20120613013554) do
 
   create_table "contacts", :force => true do |t|
-    t.datetime "created_at",       :null => false
-    t.datetime "updated_at",       :null => false
+    t.datetime "created_at",         :null => false
+    t.datetime "updated_at",         :null => false
     t.string   "first_name"
     t.string   "last_name"
     t.string   "nickname"
@@ -32,6 +32,9 @@ ActiveRecord::Schema.define(:version => 20120609011532) do
     t.string   "we_chatted_about"
     t.string   "adjective"
     t.integer  "user_id"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
   end
 
   create_table "groups", :force => true do |t|

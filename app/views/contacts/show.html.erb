@@ -4,7 +4,12 @@
 <ul>
 <%= link_to 'Back', contacts_path %>
 
-<div id="contact">	
+<div id="contact">
+
+<% if @contact.photo.exists? %>
+<%= image_tag @contact.photo.url(:small) %>
+<%end%>
+
 <li><h1><%= @contact.first_name %> <% if @contact.last_name.present?%><%= @contact.last_name %><%end%> </h1></li>
 <% if @contact.nickname.present?%>
 <li><h3>nickname: <%= @contact.nickname %>
@@ -51,9 +56,8 @@ I'd say <%=@contact.first_name%> is <%=@contact.adjective%>
 </div>
 
 
-<%= link_to 'Edit', edit_contact_path(@contact) %> |
-<%= link_to 'Delete this contact', contacts_url(@contact.id),
- 			:method => :delete, :confirm => "Are you sure you want to delete this?"%>
+<%= link_to 'Edit', edit_contact_path(@contact) %> 
+<%= link_to 'Delete', root_url, confirm: 'Are you sure you want to delete this person?', method: :delete %></li>
 
 <%= link_to 'Did You Meet Again? Add a New Story!', new_story_url(contact_id: @contact.id) %>
 </br>

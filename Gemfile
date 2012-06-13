@@ -7,6 +7,9 @@ gem "kaminari"
 
 gem 'annotate'
 
+gem "paperclip", :git => "http://github.com/thoughtbot/paperclip.git"
+gem 'aws-s3', :require => 'aws/s3'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
