@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120613013554) do
+ActiveRecord::Schema.define(:version => 20120613045317) do
 
   create_table "contacts", :force => true do |t|
     t.datetime "created_at",         :null => false
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120613013554) do
     t.string   "photo_file_name"
     t.string   "photo_content_type"
     t.integer  "photo_file_size"
+    t.integer  "group_id"
   end
 
   create_table "groups", :force => true do |t|

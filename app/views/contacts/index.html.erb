@@ -6,66 +6,55 @@
 	</head>
 	</header>
 	<body>
+		
+		
 		<% if session[:userid].blank? %>
 		<br>
-		<div id=splash><h3>Once I Met is a powerful new tool to manage your friends,<br>
+		<div id=splash>
+			<h3>Once I Met is a powerful new tool to manage your friends,<br>
 			acquaintances, colleagues and anyone else you may run into.</h3>
 		<img><%= image_tag "OIMHP1.jpg" %></img>
 		
 		<ul>
-		<li>PLEASE SIGN IN</li>
-		<%= form_tag sessions_create_url do %>
-
+		<h3>PLEASE SIGN IN</h3>
+		  <%= form_tag sessions_create_url do %>
+		  <%= label_tag :email %>
+		  <%= text_field_tag :email %>
+		  
 		  <p>
-		    <%= label_tag :email %>
-		    <%= text_field_tag :email %>
-		  </p>
-		  <p>
-		    <%= label_tag :password %>
-		    <%= password_field_tag :password %>
+		  <%= label_tag :password %>
+		  <%= password_field_tag :password %>
 		  </p>
 
-		  <p><%= submit_tag 'Sign in'%></p>
-		<%end%>
-		<li>OR SIGN UP</li>
+		  <p>
+		  <%= submit_tag 'Sign in'%></p>
+		  <%end%>
+		
+		
+		<li>---------------------------------------</li>
+		<h3>OR SIGN UP</h3>
 		<li> <%= render :partial => '/users/form' %></li>
 		</ul>
 		<% else %></div>
 	<nav>
 		<ul>
 			<% if session[:userid].present? %>
-			<li>Hello <%= current_user.first %>!</li>
+			<li>Hello <%#= current_user.first %>!</li>
 			<% end %>
 			</br>
 		
-			<%= form_for(@contact) do |f| %>
-			<li><%=f.text_field :first_name, placeholder: "who'd you meet today?" %></li>
-			<li><%= f.submit %></li>
-			<%= f.hidden_field :user_id %>
+			<%=form_for(@contact) do |f| %>
+			<%=f.hidden_field :user_id %>
+			<%=f.text_field :first_name, placeholder: "who'd you meet today?" %>
+			<%=f.submit %>
 			<%end%>
 		
 			
-	<li><form name= "contact" action="<%contacts_url%>" method = "get">
-			<input type="text" name="keyword" placeholder = "Type a descriptor" >
-			<select name="choose">
-			  <option selected>Choose One</option>
-			  <option name="search" value="first_name">First Name</option>
-			  <option name="search" value="last_name">Last Name</option>
-			  <option name="search" value="nickname">Nickname</option>
-			  <option name="search" value="email">Email</option>
-			  <option name="search" value="adjective">Adjective</option>
-			  <option name="search" value="group">Group</option>
-			</select>
-
-			
-			<li><input type="submit" value = "Search !!">
-		</form></li>
+	   <form name= "contact" action="<%contacts_url%>" method = "get">
+	    <input type="text" name="keyword" placeholder = "Type a descriptor" >
+		<input type="submit" value = "Search">
+		</form>
 		
-			<li><form name= "contact" action="<%contacts_url%>" method = "get">
-						<input type="text" name="keyword" placeholder = "Type a descriptor" >
-
-				<li><input type="submit" value = "Search">
-					</form></li>
 			
 	<!-- <li><form action="<%contacts_url%>" method = "get">
 				<input type="text" name="keyword" placeholder = "Type a descriptor" >
@@ -79,7 +68,7 @@
 					<input type="submit" name="keyword">
 			    </form> --></li>
 			<% if session[:userid].present?%>
-			<li><%= link_to "My Account", user_url(current_user)%></li>
+			<li><%#= link_to "My Account", user_url(current_user)%></li>
 			<li><%= link_to "Sign Out", sign_out_url %></li>
 			<%end%>
 			

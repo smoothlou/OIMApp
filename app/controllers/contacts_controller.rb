@@ -31,6 +31,12 @@ class ContactsController < ApplicationController
   def show
     @contact = Contact.find(params[:id])
     # @contact.stories = Story.find(params[:contact_id])
+    
+    @tweet = @contact.twitter
+    twitter_url = "http://search.twitter.com/search.json?q=#{@tweet}&include_entities=true&result_type=mixed&limit=10"
+   
+    feeds = JSON.parse(open(twitter_url).read)
+    @results = feeds["results"]
 
     respond_to do |format|
       format.html # show.html.erb

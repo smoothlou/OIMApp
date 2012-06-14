@@ -28,7 +28,7 @@ Phone: <%= @contact.phone %>
 <%end%></li>
 
 <li><% if @contact.twitter.present?%>
-twitter: <%= @contact.twitter %>
+twitter: @<%= @contact.twitter %>
 <%end%></li>
 
 <li><% if @contact.address.present?%>
@@ -73,4 +73,11 @@ I'd say <%=@contact.first_name%> is <%=@contact.adjective%>
 <%=s.convo%>
 </ul>
 <%end%>
+<%end%>
+
+<h3>Recent Tweets</h3>
+<% @results.each do |result| %>
+<ul>
+<li><%#= result["profile_image_url"]%><%= result["text"]%></li>
+</ul>
 <%end%>
