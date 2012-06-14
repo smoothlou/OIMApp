@@ -4,7 +4,7 @@ class Contact < ActiveRecord::Base
   validates_presence_of :first_name
   
   has_many :stories
-  has_many :groups, :through => :user
+  belongs_to :group
   belongs_to :user
   
   # require 'aws/s3'
