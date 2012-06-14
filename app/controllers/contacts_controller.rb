@@ -10,14 +10,16 @@ class ContactsController < ApplicationController
     
     # if params[:keyword].present? & params[:search].present?
     #       @contacts = Contact.where("LOWER(#{params[:search]}) LIKE ?", "%#{params[:keyword].downcase}%")
+  
+    
+    
     if params[:keyword].present?   
-      @contacts = Contact.where("LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ? OR LOWER(email) LIKE ? OR LOWER(adjective) LIKE ?","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%")
+      @contacts = Contact.where("LOWER(first_name) LIKE ? OR LOWER(last_name) LIKE ? OR LOWER(email) LIKE ? OR LOWER(adjective) LIKE ?","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%","%#{params[:keyword].downcase}%") #&& Contact.where("(user_id) = #{session[:userid]}")
       @contacts = @contacts.page(params[:page]).per(5)
     else
-      @contacts = Contact.page(params[:page]).per(5)
+      @contacts = Contact.where("(user_id) = #{session[:userid]}")
+      @contacts = @contacts.page(params[:page]).per(5)
     end
-    
-    
 
     respond_to do |format|
       @contact.save
@@ -32,11 +34,12 @@ class ContactsController < ApplicationController
     @contact = Contact.find(params[:id])
     # @contact.stories = Story.find(params[:contact_id])
     
+    if @contact.twitter.present?
     @tweet = @contact.twitter
     twitter_url = "http://search.twitter.com/search.json?q=#{@tweet}&include_entities=true&result_type=mixed&limit=10"
-   
     feeds = JSON.parse(open(twitter_url).read)
     @results = feeds["results"]
+    end
 
     respond_to do |format|
       format.html # show.html.erb

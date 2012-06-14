@@ -57,11 +57,12 @@ I'd say <%=@contact.first_name%> is <%=@contact.adjective%>
 
 
 <%= link_to 'Edit', edit_contact_path(@contact) %> 
-<%= link_to 'Delete', root_url, confirm: 'Are you sure you want to delete this person?', method: :delete %></li>
+<%= link_to 'Delete', root_url, confirm: 'Are you sure you want to delete this person?', method: :delete %></li></br></br>
 
 <%= link_to 'Did You Meet Again? Add a New Story!', new_story_url(contact_id: @contact.id) %>
 </br>
 <% if @contact.stories.present?%>
+
 <h2>We Met Again On</h2> 
 
 <% @contact.stories.each do |s|%>
@@ -75,9 +76,11 @@ I'd say <%=@contact.first_name%> is <%=@contact.adjective%>
 <%end%>
 <%end%>
 
+<% if @contact.twitter.present? %>
 <h3>Recent Tweets</h3>
 <% @results.each do |result| %>
 <ul>
 <li><%#= result["profile_image_url"]%><%= result["text"]%></li>
 </ul>
+<%end%>
 <%end%>
