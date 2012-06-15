@@ -52,10 +52,28 @@
 	  </ul>
 	  </nav></header>
 			
+<<<<<<< HEAD
     <div id="content">
 	  <%# if flash[:notice].present? %>
 	  <p id="notice"><%= flash[:notice]%></p>
 	  <%#end%>
+=======
+
+			<div id="content">
+				<% if flash[:notice].present? %>
+				<p id="notice"><%= flash[:notice]%></p>
+				<%end%>
+				
+
+				
+				<div id="sidebar">
+					<ul>
+				  	<li><h2>Your Groups</h2></li>
+				    <% @groups.each do |group| %>
+					<li><h3><%#= link_to "group.name", group_url %></h3></li>
+				    <%end%>
+			    </div>
+>>>>>>> fixing damages.
 	
 	<div id="sidebar">
 	  <h2>Your Groups</h2>
@@ -67,6 +85,7 @@
 	</div>
 	
 	<div id="contacts">	
+<<<<<<< HEAD
 	 <h1>Your Contacts</h1>  
 	 <%#= if @contacts.nil %>
        <!-- <p>Couldn't find a match. Please try again</p> -->
@@ -86,4 +105,19 @@
 	</div>
    <% end %>
   </body>
+=======
+		<ul>
+			
+		<li><h1>Your Contacts</h1></li>
+		<% @zebra.contacts.each do |contact| %>
+		  <li><h2><%= link_to "#{contact.first_name} #{contact.last_name}", contact_url(contact.id) %></h2></li> <%#=@stories.last(params[:contact_id])%>
+		  <%= link_to 'More Info', contact %>
+		  <%= link_to 'Edit', edit_contact_path(contact) %>
+		  <%= link_to 'Delete', contact, confirm: 'Are you sure you want to delete this person?', method: :delete %></li>
+	    <% end  %></br></br>
+		<li><%= paginate @contacts%></li>
+		<li><%= link_to 'Create a new contact!', new_contact_path %></li>
+		</div><% end %>
+	</body>
+>>>>>>> fixing damages.
 </html>

@@ -5,6 +5,7 @@ class ContactsController < ApplicationController
     
     @contact = Contact.new
     @user = User.new
+    @zebra = User.find_by_id(session[:userid])
     @groups = Group.all
     @stories = Story.all
     
